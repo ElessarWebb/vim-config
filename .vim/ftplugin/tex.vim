@@ -13,8 +13,13 @@ let g:Tex_MultipleCompileFormats="pdf"
 " let g:Imap_UsePlaceHolders=0
 let g:Tex_UseMakefile=0
 let g:Tex_GotoError=0
+let g:Tex_ShowErrorContext = 0
 let g:Tex_ViewRule_pdf='evince &> /dev/null'
 let g:Tex_CompileRule_pdf='rubber -fd'
 
 " ignore all warnings below level
 let g:TCLevel = 1
+
+" AUTOSAVE!! every minute
+" yes, I enabled this after a nasty fail.
+autosave 60
