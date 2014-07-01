@@ -5,6 +5,7 @@ execute pathogen#infect()
 syntax enable
 
 let mapleader = ","
+let maplocalleader = "."
 
 " Automatically cd into the directory that the file is in
 " only enable if command-t is not installed
@@ -33,14 +34,15 @@ endfunction
 autocmd BufRead,BufWrite * if ! &bin | silent! call Preserve("%s/\\s\\+$//e") | endif
 
 " indenting
-set noexpandtab
+set expandtab
 set copyindent
 set preserveindent
 set softtabstop=0
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set autoindent
 set smartindent
+set ignorecase
 
 " use the ftplugin files
 filetype plugin on
@@ -52,10 +54,14 @@ set number
 " don't copy lineno's
 set mouse=a
 
+" wrap to previous/next line on move left at beginning, etc
+set whichwrap+=<,>,h,l,[,]
+
 " scrolling (keep n lines visible beneath and above cursor)
 set scrolloff=10
 
 " always show the statusline
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 
 " yeah you want this
@@ -97,8 +103,14 @@ noremap <C-l> <C-w>l
 nnoremap <C-n> :bnext<Cr>
 nnoremap <C-p> :bprev<Cr>
 
+" Gundo
+nnoremap <F3> :GundoToggle<CR>
+
 " this is extreme in git add -p edit
 noremap <Space> 0r <Esc>
+
+" making stuff
+noremap <LEADER>m :make<CR>
 
 " do not swap "-register on visual replace put
 vnoremap p "_dP
@@ -215,4 +227,3 @@ function! RangeChooser()
 endfunction
 command! -bar RangerChooser call RangeChooser()
 nnoremap <leader>r :<C-U>RangerChooser<CR>
-
