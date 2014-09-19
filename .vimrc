@@ -4,6 +4,10 @@ execute pathogen#infect()
 " ok, ok i'll use syntax highlighting
 syntax enable
 
+" syntastic config
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
 let mapleader = ","
 let maplocalleader = "."
 
@@ -11,9 +15,9 @@ let maplocalleader = "."
 " only enable if command-t is not installed
 " set autochdir
 
-" with command T enabled, set it's window size
-let g:CommandTMaxHeight=10
-let g:CommandTMinHeight=10
+" snipmate with supertab
+imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
+smap <C-J> <Plug>snipMateNextOrTrigger
 
 " Preserves/Saves the state, executes a command, and returns to the saved state
 function! Preserve(command)
@@ -43,6 +47,24 @@ set tabstop=2
 set autoindent
 set smartindent
 set ignorecase
+
+" ctrlp behaviour
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPMixed'
+
+" airline config
+let g:airline_right_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep= ''
+let g:airline_left_sep = ''
+
+" buffer list
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" backspace fix
+fixdel
 
 " use the ftplugin files
 filetype plugin on
@@ -79,12 +101,12 @@ set formatoptions+=r
 " use jj to go to cmd mode
 inoremap jj <ESC>
 
-" easier tabbing in insert mode
-inoremap <C-s-t> <ESC>:tabprevious<Enter>i
-inoremap <C-t> <ESC>:tabnext<Enter>i
+" tabnew shorcut in cmd mode
+noremap <C-t> :edit<Space>
+
 " easier tabbing in cmd mode
-noremap H :tabprevious<Enter>
-noremap L :tabnext<Enter>
+noremap H :bprev<Enter>
+noremap L :bnext<Enter>
 
 " I like to forget to visually select the line when using gq to format a single line
 noremap gq Vgq :noh<Enter>
@@ -98,10 +120,6 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
-
-" buffer switching prev/next
-nnoremap <C-n> :bnext<Cr>
-nnoremap <C-p> :bprev<Cr>
 
 " Gundo
 nnoremap <F3> :GundoToggle<CR>
@@ -140,7 +158,7 @@ set textwidth=100 " use in combination with gq to break paragraph
 set hlsearch
 
 " ctags file
-set tags=./tags;
+set tags=.tags;/
 
 " completion
 " Disable AutoComplPop.
