@@ -6,7 +6,7 @@ syntax enable
 
 " syntastic config
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+nnoremap <C-w>E :SyntasticCheck<CR>\| :SyntasticToggleMode<CR>
 
 let mapleader = ","
 let maplocalleader = "."
@@ -46,19 +46,20 @@ set shiftwidth=2
 set tabstop=2
 set autoindent
 set smartindent
-set ignorecase
 
 " ctrlp behaviour
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 
 " airline config
-let g:airline_right_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep= ''
-let g:airline_left_sep = ''
+let g:airline_right_alt_sep = '' " ''
+let g:airline_right_sep = '' " ''
+let g:airline_left_alt_sep= '' " ''
+let g:airline_left_sep = '' "''
 
-" buffer list
+" buffer stuff
+set hidden
+noremap <silent> <leader>d :bp\|:bd #<CR>
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -80,7 +81,7 @@ set mouse=a
 set whichwrap+=<,>,h,l,[,]
 
 " scrolling (keep n lines visible beneath and above cursor)
-set scrolloff=10
+set scrolloff=9999
 
 " always show the statusline
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -142,7 +143,7 @@ set backupdir=~/.vim/backup
 set iskeyword-=_
 
 set background=dark
-set gfn=Inconsolata\ Medium\ 10
+set gfn=Inconsolata\ Medium\ 12
 
 " let g:solarized_termcolors = 256
 colorscheme solarized
