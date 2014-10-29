@@ -1,6 +1,9 @@
 " ok ok, i'll use pathogen...
 execute pathogen#infect()
 
+" some MacOSx stuff
+set backspace=indent,eol,start
+
 " ok, ok i'll use syntax highlighting
 syntax enable
 
@@ -47,6 +50,10 @@ set tabstop=2
 set autoindent
 set smartindent
 
+" clipboard
+vnoremap <C-x> : !pbcopy<CR>
+vnoremap <C-c> : w !pbcopy<CR><CR>
+
 " ctrlp behaviour
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -84,8 +91,8 @@ set whichwrap+=<,>,h,l,[,]
 set scrolloff=9999
 
 " always show the statusline
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-set laststatus=2
+" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" set laststatus=2
 
 " yeah you want this
 set undofile
