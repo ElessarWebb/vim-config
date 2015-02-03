@@ -15,10 +15,6 @@ let maplocalleader = "."
 " only enable if command-t is not installed
 " set autochdir
 
-" snipmate with supertab
-imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
-
 " Preserves/Saves the state, executes a command, and returns to the saved state
 function! Preserve(command)
 	" save last search, and cursor position.
@@ -49,7 +45,16 @@ set smartindent
 
 " ctrlp behaviour
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+let g:ctrlp_root_markers = ['.ctrlp']
+let g:ctrlp_working_path_mode = 'ra'
+nnoremap t :CtrlPTag<CR>
+nnoremap \ :CtrlPLine<CR>
+let g:ctrlp_buftag_types = {
+      \'scala' : '--langmap=scala:+.scala'
+      \}
+
 
 " airline config
 let g:airline_right_alt_sep = '' " ''
@@ -81,7 +86,7 @@ set mouse=a
 set whichwrap+=<,>,h,l,[,]
 
 " scrolling (keep n lines visible beneath and above cursor)
-set scrolloff=9999
+set scrolloff=10
 
 " always show the statusline
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -159,7 +164,7 @@ set textwidth=100 " use in combination with gq to break paragraph
 set hlsearch
 
 " ctags file
-set tags=.tags;/
+set tags=tags;/
 
 " completion
 " Disable AutoComplPop.
@@ -203,6 +208,9 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" disable the scratch preview
+set completeopt-=preview
 
 " words less than 3 letters long aren't worth completing
 let g:neocomplcache_auto_completion_start_length = 3
